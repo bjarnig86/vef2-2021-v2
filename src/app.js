@@ -4,28 +4,20 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const { PORT: port = 3000 } = process.env;
-console.log(PORT);
 
 const app = express();
 
-app.use(express.urlencoded({ extended: true }));
+// set template machine
+app.set('view engine', 'ejs');
 
-// TODO setja upp rest af virkni!
+// static files
+app.use(express.static('./public'));
 
 app.get('/', (req, res) => {
-  res.send(`
-<form method="post" action="/post" enctype="application/x-www-form-urlencoded">
-  <input type="text" name="data">
-  <input type="file" name="file">
-  <button>Senda</button>
-</form>
-  `);
+  res.render('./index');
 });
 
-app.post('/post', (req, res) => {
-  console.log('req.body :>> ', req.body);
-  res.send(`POST gögn: ${JSON.stringify(req.body)}`);
-});
+// TODO setja upp rest af virkni!
 
 // Verðum að setja bara *port* svo virki á heroku
 app.listen(port, () => {

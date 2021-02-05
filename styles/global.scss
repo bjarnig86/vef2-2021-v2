@@ -1,0 +1,56 @@
+// Sækja config
+
+@import './config';
+
+// Allir stílar fyrir "global", þ.e.a.s. type selectorar, reset etc
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  margin-bottom: 1.5em;
+  margin-top: 1.5em;
+  text-align: center;
+  vertical-align: middle;
+
+  h1 {
+    font-size: 3em;
+    font-weight: 700;
+    text-align: center;
+    word-wrap: break-word;
+  }
+}
+
+p {
+  font-size: 1.5em;
+}
+
+h2 {
+  font-size: 2em;
+  margin-bottom: 0.75em;
+}
+
+h3 {
+  font-weight: 700;
+  margin-bottom: 0.5em;
+}
+
+body {
+  background-color: rgb(243, 189, 123);
+  font-family: sans-serif;
+  font-size: 16px;
+  * {
+    padding: 3px;
+  }
+}
+
+footer {
+  margin-bottom: 3em;
+  text-align: center;
+}
+
+.name-row {
+}

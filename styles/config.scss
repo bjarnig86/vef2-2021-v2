@@ -1,0 +1,11 @@
+// grid breytur
+$columns: 12;
+$max-width: 1400px;
+$gutter: 20px;
+
+@mixin to-the-side {
+  display: flex;
+  font-size: 1.5em;
+  padding: 1.5em;
+  text-align: center;
+}

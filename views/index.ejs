@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="is">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Undirskriftalisti</title>
+  </head>
+  <body>
+    <header>
+      <div class="grid">
+        <div class="row">
+          <div class="col col-12">
+            <h1 class="title">Undirskriftalisti</h1>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="grid">
+    <section class="top">
+      <form class="form" action="/post" method="post">
+          <div class="row name">
+            <div class="col col-2">
+              <p class="name__side">Nafn*</p>
+            </div>
+            <div class="col col-10">
+              <input class="name__input" type="text" name="name" id="name" />
+            </div>
+          </div>
+            <div class="row ssn">
+              <div class="col col-2">
+                <p class="ssn__side">Kennitala*</p>
+              </div>
+              <div class="col col-10">
+                <input class="ssn__input" type="text" name="ssn" id="ssn" />
+              </div>
+          </div>
+          <div class="row comments">
+            <div class="col col-2">
+              <p class="comments__side">Athugasemd:</p>
+            </div>
+            <div class="col col-10">
+              <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+            </div>
+        </div>
+        <div class="row checkbox">
+          <div class="checkbox-container"></div>
+          <input type="checkbox" name="anonymous" id="anonymous" />
+          <p>Ekki birta nafn á lista</p>
+        </div>
+        <div class="row button">
+          <div class="col col-12">
+            <div class="button-container">
+              <button class="submit">Skrifa undir</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </section>
+  </body>
+</html>
