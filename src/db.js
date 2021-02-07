@@ -1,9 +1,10 @@
 import pg from 'pg';
 import dotenv from 'dotenv';
+import { Client } from 'pg';
 
 dotenv.config();
 
-const connectionString = process.env.DATABASE_URL;
+const { DATABASE_URL: connectionString } = process.env;
 console.log(connectionString);
 
 if (!connectionString) {
@@ -16,8 +17,8 @@ async function bla() {
   const pgClient = new pg.Client(connectionString);
   await pgClient.connect();
 
-  // var query = pgClient.query('SELECT * FROM vef2-2021-v2');
-  // console.log(query);
+  var query = pgClient.query('SELECT * FROM vef2-2021-v2');
+  console.log(query);
 }
 
 bla();

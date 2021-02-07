@@ -22,7 +22,7 @@
       <form class="form" action="/post" method="post">
           <div class="row name">
             <div class="col col-2">
-              <p class="name__side">Nafn*</p>
+              <label for="name" class="name__side">Nafn*</label>
             </div>
             <div class="col col-10">
               <input class="name__input" type="text" name="name" id="name" />
@@ -30,7 +30,7 @@
           </div>
             <div class="row ssn">
               <div class="col col-2">
-                <p class="ssn__side">Kennitala*</p>
+                <label for="ssn" class="ssn__side">Kennitala*</label>
               </div>
               <div class="col col-10">
                 <input class="ssn__input" type="text" name="ssn" id="ssn" />
@@ -38,25 +38,30 @@
           </div>
           <div class="row comments">
             <div class="col col-2">
-              <p class="comments__side">Athugasemd:</p>
+              <label for="comment" class="comments__side">Athugasemd:</label>
             </div>
             <div class="col col-10">
               <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
             </div>
         </div>
         <div class="row checkbox">
-          <div class="checkbox-container"></div>
-          <input type="checkbox" name="anonymous" id="anonymous" />
-          <p>Ekki birta nafn á lista</p>
+          <div class="checkbox-container">
+            <input class="checkbox" type="checkbox" name="anonymous" id="anonymous" />
+            <label for="anonymous">Ekki birta nafn á lista</label>
+          </div>
         </div>
         <div class="row button">
           <div class="col col-12">
             <div class="button-container">
-              <button class="submit">Skrifa undir</button>
+              <button type="submit" class="submit">Skrifa undir</button>
             </div>
           </div>
         </div>
       </form>
+    </section>
+  <hr>
+    <section>
+      <%- include('templates/signatures.ejs')  %>
     </section>
   </body>
 </html>
