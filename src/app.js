@@ -1,6 +1,5 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import main from '../setup.js';
 import { router } from './registration.js';
 import { formatDate } from './db.js';
 
