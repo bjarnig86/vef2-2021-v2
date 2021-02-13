@@ -19,13 +19,13 @@
     </header>
     <div class="grid">
     <section class="top">
-      <form class="form" action="/post" method="post">
+      <form class="form" action="/" method="post">
           <div class="row name">
-            <div class="col col-2">
+            <div class="col col-2 ">
               <label for="name" class="name__side">Nafn*</label>
             </div>
             <div class="col col-10">
-              <input class="name__input" type="text" name="name" id="name" />
+              <input class="name__input" type="text" name="name" id="name" value="<%= name %>"/>
             </div>
           </div>
             <div class="row ssn">
@@ -33,7 +33,7 @@
                 <label for="ssn" class="ssn__side">Kennitala*</label>
               </div>
               <div class="col col-10">
-                <input class="ssn__input" type="text" name="ssn" id="ssn" />
+                <input placeholder="000000-0000" class="ssn__input" type="text" name="ssn" id="ssn" value="<%= ssn %>"/>
               </div>
           </div>
           <div class="row comments">
@@ -41,13 +41,25 @@
               <label for="comment" class="comments__side">Athugasemd:</label>
             </div>
             <div class="col col-10">
-              <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+              <textarea name="comment" id="comment" cols="30" rows="10" value="<%= comment %>"></textarea>
             </div>
         </div>
         <div class="row checkbox">
           <div class="checkbox-container">
             <input class="checkbox" type="checkbox" name="anonymous" id="anonymous" />
             <label for="anonymous">Ekki birta nafn á lista</label>
+          </div>
+        </div>
+        <div class="row errors">
+          <div class="col col-12">
+            <% if (errors.length > 0) { %>
+              <h2>Villa við skráningu</h2>
+              <ul class="errors__list">
+                <% errors.forEach((error) => { %>
+                  <li class="error"><label for="<%= error.param %>"><%= error.msg %></label></li>
+                <% }); %>
+              </ul>
+            <% } %>
           </div>
         </div>
         <div class="row button">
@@ -61,7 +73,34 @@
     </section>
   <hr>
     <section>
-      <%- include('templates/signatures.ejs')  %>
+      <div class="grid">
+        <div class="row">
+          <div class="col col-12">
+            <header><h2>Undirskriftir</h2></header>
+            <table>
+              <tbody>
+                <tr>
+                  <th scope="col"><strong>Dags</strong></th>
+                  <th scope="col"><strong>Nafn</strong></th>
+                  <th scope="col"><strong>Athugasemd</strong></th>
+                </tr>
+                <tr>
+                  <td>05.02.2021</td>
+                  <td>Bjarni</td>
+                  <td>Hvað er um að vera?</td>
+                </tr>
+                  <% list.forEach((row) => { %>
+                    <tr>
+                      <td><%= formatDate(row.signed) %> </td>
+                      <td><%= row.name %> </td>
+                      <td><%= row.comment %> </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
     </section>
   </body>
 </html>

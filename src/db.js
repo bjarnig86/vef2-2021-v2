@@ -1,24 +1,63 @@
 import pg from 'pg';
 import dotenv from 'dotenv';
-import { Client } from 'pg';
 
 dotenv.config();
 
 const { DATABASE_URL: connectionString } = process.env;
-console.log(connectionString);
 
-if (!connectionString) {
-  console.error('Vantar DATABASE_URL');
-  process.exit(1);
+const pool = new pg.Pool({ connectionString });
+
+export function formatDate(date) {
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  if (day > 9 && month > 9) {
+    return `${day}.${month}.${year}`;
+  }
+  if (day > 9) {
+    return `${day}.0${month}.${year}`;
+  }
+  if (month > 9) {
+    const d = `0${day}.${month}.${year}`;
+    return d;
+  }
+
+  return `0${day}.0${month}.${year}`;
 }
 
-// TODO gagnagrunnstengingar
-async function bla() {
-  const pgClient = new pg.Client(connectionString);
-  await pgClient.connect();
+/**
+ *
+ * @param {string} q Query til að keyra
+ * @param {array} values Fylki af gildum fyrir query
+ * @returns {object} Hlut með niðurstöðu af því að keyra fyrirspurn
+ */
+export async function query(q, values = []) {
+  const client = await pool.connect();
+  try {
+    const result = await client.query(q, values);
 
-  var query = pgClient.query('SELECT * FROM vef2-2021-v2');
-  console.log(query);
+    return result;
+    // eslint-disable-next-line no-useless-catch
+  } catch (err) {
+    throw err;
+  } finally {
+    await client.end();
+  }
 }
 
-bla();
+export async function insert(data) {
+  const q = `
+  INSERT INTO signatures
+  (name, ssn, comment)
+  VALUES
+  ($1, $2, $3)`;
+  const values = [data.name, data.ssn, data.comment];
+
+  return query(q, values);
+}
+
+export async function select() {
+  const result = await query('SELECT * FROM signatures ORDER BY signed');
+
+  return result.rows;
+}
