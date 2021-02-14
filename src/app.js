@@ -24,6 +24,4 @@ app.use('/', router);
 // app.use('/mottekid', router);
 
 // Verðum að setja bara *port* svo virki á heroku
-app.listen(port, () => {
-  console.info(`Server running at http://localhost:${port}/`);
-});
+app.listen(port);
