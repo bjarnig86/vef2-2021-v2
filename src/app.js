@@ -20,18 +20,6 @@ app.locals.formatDate = formatDate;
 // static files
 app.use(express.static('./public'));
 
-// TODO setja upp rest af virkni!
-// app.get('/', (req, res) => {
-//   const tafla = main();
-//   tafla.then((response) => {
-//     res.render('./index', {
-//       title: 'Undirskrifarlisti',
-//       dalkar: response,
-//       router,
-//     });
-//   });
-// });
-
 app.use('/', router);
 // app.use('/mottekid', router);
 

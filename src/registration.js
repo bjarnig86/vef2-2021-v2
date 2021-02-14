@@ -73,15 +73,6 @@ const validation = [
     .withMessage('Athugasemd má að hámarki vera 400 stafir'),
 ];
 
-// (req, res, next) => {
-//   // console.log('req.body :>> ', req.body);
-//   // res.send(`Post gögn: ${JSON.stringify(req.body)}`);
-
-//   isError(req, res, next);
-//   // next();
-// },
-// // sanitize
-
 const sanitazions = [
   body('name').trim().escape(),
   sanitizeXss('name'),
@@ -92,26 +83,13 @@ const sanitazions = [
   sanitizeXss('comment'),
   body('comment').trim().escape(),
 ];
-// (req, res) => {
-//   return res.send(`
-//   <p>Skráning móttekin!</p>
-//   <dl>
-//     <dt>Nafn</dt>
-//     <dd>${req.body.name}</dd>
-//     <dt>Kennitala</dt>
-//     <dd>${req.body.ssn}</dd>
-//     <dt>Athugasemd</dt>
-//     <dd>${req.body.comment}</dd>
-//   </dl>
-// `);
-// }
 
 // Route handler fyrir form umsóknar.
 async function form(req, res) {
   const list = await select();
 
   const data = {
-    title: 'Undiskrifalisti',
+    title: 'Undirskrifalisti',
     name: '',
     ssn: '',
     comment: '',
@@ -147,28 +125,27 @@ async function showErrors(req, res, next) {
 }
 
 async function formPost(req, res) {
-  const { body: { name = '', ssn = '', comment = '' } = {} } = req;
+  const {
+    body: { name = '', ssn = '', comment = '', anonymous = '' } = {},
+  } = req;
 
   const data = {
     name,
     ssn,
     comment,
+    anonymous,
   };
 
-  const okay = await insert(data);
-  if (okay) {
-    res.render('error', { title: 'Skráning tókst ekki!' });
+  const error = await insert(data);
+  console.log('error :>> ', error);
+  if (error.param !== undefined) {
+    res.render('./error', { title: 'Skráning tókst ekki!' });
   }
 
   res.redirect('/');
 }
 
-// function thanks(req, res) {
-//   return res.render('index', { title: 'Skráning móttekin' });
-// }
-
 router.get('/', form);
-// router.get('/index', thanks);
 
 router.post(
   '/',

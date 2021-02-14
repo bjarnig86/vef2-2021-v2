@@ -5,9 +5,10 @@
   "main": ".eslintrc.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "stylelint **/*.scss eslint **/*.js",
     "start": "nodemon ./src/app.js",
-    "sass": "node-sass --source-map-embed --watch styles.scss --recursive public/styles.css"
+    "sass": "node-sass --source-map-embed --watch styles.scss --recursive public/styles.css",
+    "setup": "nodemon ./setup.js"
   },
   "repository": {
     "type": "git",
