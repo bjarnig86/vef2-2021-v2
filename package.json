@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "stylelint **/*.scss eslint **/*.js",
-    "start": "app.js",
+    "start": "node ./src/app.js",
     "sass": "node-sass --source-map-embed --watch styles.scss --recursive public/styles.css",
     "setup": "nodemon ./setup.js"
   },
