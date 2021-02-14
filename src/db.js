@@ -27,6 +27,7 @@ pool.on('error', (err) => {
 });
 
 // Þetta er fyrir local
+// DATABASE_URL=postgres://postgres:12345@localhost/vef2-2021-v2
 // const { DATABASE_URL: connectionString } = process.env;
 
 // const pool = new pg.Pool({ connectionString });
